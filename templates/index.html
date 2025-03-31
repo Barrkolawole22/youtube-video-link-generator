@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Social Media Video Downloader</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="/static/logo.png" alt="SaveMedia Logo" class="logo-img">
+        </div>
+        <div class="hamburger-menu">
+            <button id="menu-toggle" class="menu-toggle">☰</button>
+        </div>
+        <nav id="nav-menu" class="nav-menu">
+            <div class="menu-close">✕</div>
+            <ul>
+                <li class="active"><a href="/index.html"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="/download-app.html">✅ Download App</a></li>
+                <li><a href="/more-apps.html">📦 More Apps</a></li>
+                <li><a href="/promotions.html">🛍 Buy Promotions</a></li>
+                <li><a href="/about.html">ℹ️ About Me</a></li>
+                <li><a href="terms-of-service.html">Terms of Service</a></li>
+                <li><a href="privacy.html">Privacy Policy</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        <h1>Social Media Video Downloader</h1>
+        <h2 style="text-align: center;">Save from Net Youtube, Facebook, X (Twitter) and Instagram Videos</h2>
+        <div class="search-box">
+            <form id="url-form" class="url-form">
+                <div class="input-group">
+                    <input type="text" id="video-url" placeholder="Paste your video link here" required>
+                    <button type="submit" id="generate-btn" class="download-main-btn">Download</button>
+                </div>
+            </form>
+            <div class="terms">
+                By using our service you accept our <a href="/terms.html">Terms of Service</a> and <a href="/privacy.html">Privacy Policy</a>
+            </div>
+            <div class="safe-badge">
+                <span><i class="fas fa-shield-alt"></i> Safe to download</span> <span class="verified">VIRUS FREE & ADWARE FREE</span>
+            </div>
+            <div class="norton-badge">
+                <span>Scanned by <img src="/static/norton-icon.png" alt="Norton"> Safe Web</span>
+            </div>
+        </div>
+
+        <div class="features">
+            <div class="feature-item">
+                <div class="feature-icon youtube-icon">
+                    <i class="fab fa-youtube"></i>
+                    <span>YouTube</span>
+                </div>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon youtube-mp4">
+                    <i class="fas fa-file-video"></i>
+                    <span>YouTube MP4</span>
+                </div>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon youtube-shorts">
+                    <i class="fas fa-mobile-alt"></i>
+                    <span>YouTube Shorts</span>
+                </div>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon youtube-mp3">
+                    <i class="fas fa-music"></i>
+                    <span>YouTube MP3</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="highlight-box">
+            <div class="highlight-header">MEDIA DOWNLOADING</div>
+            <h2>Download Any videos and music quickly and easily with the Savemedia.net mobile app.</h2>
+            <button a href="https://savemediafrom.net/app-download" class="install-button"><i class="fas fa-download"></i> INSTALL NOW</button>
+        </div>
+
+        <div id="loading" class="loading-container" style="display: none;">
+            <div class="loading-spinner"></div>
+            <p>Fetching video information...</p>
+        </div>
+
+        <div id="error-container" class="error-container" style="display: none;">
+            <p id="error-message"></p>
+        </div>
+
+        <div id="result-container" class="result-container" style="display: none;">
+            <div class="video-info">
+                <div class="video-thumbnail">
+                    <img id="video-thumbnail" src="" alt="Video Thumbnail">
+                    <div id="platform-badge" class="platform-badge"></div>
+                </div>
+                <div class="video-details">
+                    <h2 id="video-title"></h2>
+                    <p id="video-uploader-container">Creator: <span id="video-uploader"></span></p>
+                    <p id="video-duration-container">Duration: <span id="video-duration"></span></p>
+                </div>
+            </div>
+
+            <div class="download-options">
+                <h3>Download Options</h3>
+                <div id="format-list" class="format-list"></div>
+            </div>
+            
+            <div class="new-search">
+                <button id="new-search-btn" class="secondary-btn">Search Another Video</button>
+            </div>
+        </div>
+        
+        <div class="how-to-section">
+            <div class="how-to-content">
+                <h2>Simplified YouTube Video Downloading Online</h2>
+                <ol>
+                    <li>Navigate to YouTube.com and select the video you wish to download for offline viewing.</li>
+                    <li>Click the "Download" button and select your preferred format, including popular options like MP3, MP4, WEBM, or 3GP.</li>
+                    <li>Initiate the download process by clicking the "Download" button.</li>
+                    <li>Enjoy uninterrupted access to your favorite videos and playlists offline! This method is perfectly compatible with major browsers such as Chrome, Firefox, and others.</li>
+                </ol>
+                <button class="install-button"><i class="fas fa-download"></i> INSTALL NOW</button>
+            </div>
+            <div class="how-to-image">
+                <img src="/static/tutorial-image.jpg" alt="Tutorial Image">
+            </div>
+        </div>
+
+        <div class="method-section">
+            <div class="method-header">Method 2</div>
+            <h2>Download YouTube Videos via SaveMedia.com</h2>
+            <div class="method-content">
+                <div class="method-image">
+                    <img src="/static/method2-image.jpg" alt="Method 2 Screenshot">
+                </div>
+                <div class="method-text">
+                    <h3>How to Download YouTube Videos Without Using an Add-on?</h3>
+                    <p>Do you want to know how to download YouTube videos online without the need for an add-on?</p>
+                    <ol>
+                        <li>Simply add "save" to the video URL to access the YouTube download service.</li>
+                        <li>The download will begin shortly.</li>
+                    </ol>
+                    <p><strong>Example:</strong><br>
+                    Original URL: https://youtube.com/watch?v=YO1mBs8fJag<br>
+                    URL with ss: https://ssyoutube.com/watch?v=YO1mBs8fJag</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>This tool generates direct download links using the platform's servers. No videos are stored on our server.</p>
+            <p>Download responsibly and respect copyright laws.</p>
+            <p>© 2025 SaveMedia.net | <a href="/terms.html">Terms of Service</a> | <a href="/privacy.html">Privacy Policy</a></p>
+        </div>
+    </div>
+    <script src="/static/script.js"></script>
+    <script src="/static/menu.js"></script>
+</body>
+</html>
