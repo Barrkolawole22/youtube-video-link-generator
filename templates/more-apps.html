@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>More Apps - Social Media Video Downloader</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #ffffff;
+            color: #243c83;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #273f85;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo-img {
+            height: 40px;
+            max-width: 150px;
+        }
+        .nav-menu ul {
+            list-style: none;
+            display: flex;
+            gap: 15px;
+            margin: 0;
+            padding: 0;
+        }
+        .nav-menu a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            text-align: center;
+            padding: 20px;
+        }
+        .apps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .app-card {
+            background: white;
+            color: #243c83;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+        .app-card:hover {
+            transform: translateY(-5px);
+        }
+        .app-icon img {
+            width: 100px;
+            height: 100px;
+            border-radius: 10px;
+            object-fit: cover;
+        }
+        .download-app-btn {
+            display: inline-block;
+            background-color: #f0e511;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            color: black;
+            margin-top: 10px;
+        }
+        .download-app-btn:hover {
+            background-color: #ffcc00;
+        }
+        .footer {
+            margin-top: 20px;
+            padding: 20px;
+            text-align: center;
+            background: #273f85;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="/static/logo.png" alt="SaveMedia Logo" class="logo-img">
+        </div>
+        <nav class="nav-menu">
+            <ul>
+                <li><a href="/index.html">Home</a></li>
+                <li><a href="download-app.html">Download App</a></li>
+                <li><a href="more-apps.html">More Apps</a></li>
+                <li><a href="promotions.html">Buy Promotions</a></li>
+                <li><a href="about.html">About Me</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <div class="container">
+        <h1>Our Suite of Apps</h1>
+        <div class="apps-grid">
+            <div class="app-card">
+                <div class="app-icon">
+                    <img src="/static/yt-downloader-icon.png" alt="YouTube Downloader Icon">
+                </div>
+                <h3>YouTube Downloader Pro</h3>
+                <p>Download videos in HD quality.</p>
+                <a href="#" class="download-app-btn">Get it Now</a>
+            </div>
+            <div class="app-card">
+                <div class="app-icon">
+                    <img src="/static/fb-downloader-icon.png" alt="Facebook Downloader Icon">
+                </div>
+                <h3>Facebook Video Saver</h3>
+                <p>Save videos and reels.</p>
+                <a href="#" class="download-app-btn">Get it Now</a>
+            </div>
+            <div class="app-card">
+                <div class="app-icon">
+                    <img src="/static/mp3-converter-icon.png" alt="MP3 Converter Icon">
+                </div>
+                <h3>MP3 Converter</h3>
+                <p>Convert videos to MP3 audio.</p>
+                <a href="#" class="download-app-btn">Get it Now</a>
+            </div>
+            <div class="app-card">
+                <div class="app-icon">
+                    <img src="/static/video-editor-icon.png" alt="Video Editor Icon">
+                </div>
+                <h3>Quick Video Editor</h3>
+                <p>Edit videos quickly and easily.</p>
+                <a href="#" class="download-app-btn">Get it Now</a>
+            </div>
+            <div class="app-card">
+                <div class="app-icon">
+                    <img src="/static/screen-recorder-icon.png" alt="Screen Recorder Icon">
+                </div>
+                <h3>Screen Recorder</h3>
+                <p>Capture your screen with audio.</p>
+                <a href="#" class="download-app-btn">Get it Now</a>
+            </div>
+            <div class="app-card">
+                <div class="app-icon">
+                    <img src="/static/media-player-icon.png" alt="Media Player Icon">
+                </div>
+                <h3>SaveMedia Player</h3>
+                <p>Play all media formats smoothly.</p>
+                <a href="#" class="download-app-btn">Get it Now</a>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        <p>© 2025 SaveMedia.net | <a href="/terms-of-service.html">Terms of Service</a> | <a href="/privacy.html">Privacy Policy</a></p>
+    </div>
+</body>
+</html>

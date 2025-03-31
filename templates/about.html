@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Me - Web Developer</title>
+    <style>
+        /* General Page Styles */
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #0D1B2A;
+            color: #E0E1DD;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 800px;
+            background: #1B263B;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.4);
+        }
+
+        h1 {
+            color: #FFD700;
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            color: #A0C4FF;
+            font-size: 1.5rem;
+        }
+
+        p {
+            line-height: 1.6;
+            font-size: 1.1rem;
+            margin: 15px 0;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .tech-stack span {
+            background: #415A77;
+            color: #E0E1DD;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .tech-stack span:hover {
+            background: #778DA9;
+            transform: scale(1.1);
+        }
+
+        /* Button Styling */
+        .contact-btn {
+            display: inline-block;
+            text-decoration: none;
+            background: #FFD700;
+            color: #1B263B;
+            padding: 12px 20px;
+            font-size: 1rem;
+            border-radius: 8px;
+            font-weight: bold;
+            margin-top: 20px;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .contact-btn:hover {
+            background: #FFDD44;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>👨‍💻 About Me</h1>
+        <h2>Web Developer | SEO Specialist | Cloud Security Enthusiast</h2>
+        <p>
+            I’m a passionate web developer specializing in <strong>React, Next.js, JavaScript, and Python</strong>. 
+            I focus on creating <em>fast, secure, and scalable web applications</em> while integrating SEO and cybersecurity best practices.
+        </p>
+        <p>
+            Currently working on projects like a <strong>social media video downloader, AI-powered blog summarizer, stock market tracker, and an e-learning platform</strong>.
+            My goal is to build innovative solutions that enhance user experience.
+        </p>
+
+        <div class="tech-stack">
+            <span>React</span>
+            <span>Next.js</span>
+            <span>JavaScript</span>
+            <span>Python</span>
+            <span>Node.js</span>
+            <span>Cloud Security</span>
+            <span>SEO Optimization</span>
+        </div>
+
+        <a href="mailto:barrkolawole.ng@gmail.com" class="contact-btn">📧 Contact Me</a>
+    </div>
+
+</body>
+</html>

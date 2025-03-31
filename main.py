@@ -1,7 +1,7 @@
 import os
 import yt_dlp
 from fastapi import FastAPI, Request, Form, HTTPException
-from fastapi.responses import HTMLResponse, JSONResponse
+from fastapi.responses import HTMLResponse, JSONResponse, FileResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 
@@ -21,6 +21,42 @@ templates = Jinja2Templates(directory=TEMPLATES_DIR)
 async def home(request: Request):
     """Render the home page."""
     return templates.TemplateResponse("index.html", {"request": request})
+
+# Add routes for specific HTML pages
+@app.get("/index.html", response_class=HTMLResponse)
+async def index_page(request: Request):
+    """Render the index page."""
+    return templates.TemplateResponse("index.html", {"request": request})
+
+@app.get("/privacy.html", response_class=HTMLResponse)
+async def privacy_page(request: Request):
+    """Render the privacy policy page."""
+    return templates.TemplateResponse("privacy.html", {"request": request})
+
+@app.get("/terms-of-service.html", response_class=HTMLResponse)
+async def terms_page(request: Request):
+    """Render the terms of service page."""
+    return templates.TemplateResponse("terms-of-service.html", {"request": request})
+
+@app.get("/download-app.html", response_class=HTMLResponse)
+async def download_app_page(request: Request):
+    """Render the download app page."""
+    return templates.TemplateResponse("download-app.html", {"request": request})
+
+@app.get("/more-apps.html", response_class=HTMLResponse)
+async def more_apps_page(request: Request):
+    """Render the more apps page."""
+    return templates.TemplateResponse("more-apps.html", {"request": request})
+
+@app.get("/promotions.html", response_class=HTMLResponse)
+async def promotions_page(request: Request):
+    """Render the promotions page."""
+    return templates.TemplateResponse("promotions.html", {"request": request})
+
+@app.get("/about.html", response_class=HTMLResponse)
+async def about_page(request: Request):
+    """Render the about page."""
+    return templates.TemplateResponse("about.html", {"request": request})
 
 @app.post("/generate-link")
 async def generate_link(url: str = Form(...)):
