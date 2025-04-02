@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Privacy Policy - SaveMedia.net</title>
+    <meta name="description" content="Privacy Policy for SaveMedia - Social Media Video Downloader">
     <link rel="stylesheet" href="/static/style.css">
     <link rel="stylesheet" href="/static/legal.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -17,15 +18,14 @@
             <button id="menu-toggle" class="menu-toggle">☰</button>
         </div>
         <nav id="nav-menu" class="nav-menu">
-            <div class="menu-close">✕</div>
             <ul>
-                <li class="active"><a href="/index.html"><i class="fas fa-home"></i> Home</a></li>
-                <li><a href="download-app.html">✅ Download App</a></li>
-                <li><a href="more-apps.html">📦 More Apps</a></li>
-                <li><a href="promotions.html">🛍 Buy Promotions</a></li>
-                <li><a href="about.html">ℹ️ About Me</a></li>
-                <li><a href="terms-of-service.html">Terms of Service</a></li>
-                <li><a href="privacy.html">Privacy Policy</a></li>
+                <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="download-app.html"><i class="fas fa-download"></i> Download App</a></li>
+                <li><a href="more-apps.html"><i class="fas fa-box"></i> More Apps</a></li>
+                <li><a href="promotions.html"><i class="fas fa-tag"></i> Promotions</a></li>
+                <li><a href="https://barrkolawole.vercel.app/"><i class="fas fa-info-circle"></i> About Us</a></li>
+                <li><a href="terms-of-service.html"><i class="fas fa-file-contract"></i> Terms of Service</a></li>
+                <li class="active"><a href="privacy.html"><i class="fas fa-shield-alt"></i> Privacy Policy</a></li>
             </ul>
         </nav>
     </header>
@@ -146,9 +146,40 @@
     </div>
 
     <div class="footer">
-        <p>© 2025 SaveMedia.net | <a href="/terms.html">Terms of Service</a> | <a href="/privacy.html">Privacy Policy</a></p>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About SaveMedia</h3>
+                <p>SaveMedia.net helps you download videos from popular social media platforms for personal use.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="download-app.html">Download App</a></li>
+                    <li><a href="more-apps.html">More Apps</a></li>
+                    <li><a href="https://barrkolawole.vercel.app/">About Us</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Legal</h3>
+                <ul>
+                    <li><a href="terms-of-service.html">Terms of Service</a></li>
+                    <li><a href="privacy.html">Privacy Policy</a></li>
+                    <li><a href="copyright.html">Copyright Policy</a></li>
+                    <li><a href="dmca.html">DMCA</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>This tool generates direct download links using the platform's servers. No videos are stored on our server.</p>
+            <p>© 2025 SaveMedia.net | All Rights Reserved</p>
+        </div>
     </div>
     
+    <!-- Mobile Navigation Overlay -->
+    <div id="overlay" class="overlay"></div>
+    
+    <script src="/static/script.js"></script>
     <script src="/static/menu.js"></script>
 </body>
 </html>

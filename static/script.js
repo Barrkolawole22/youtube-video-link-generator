@@ -16,36 +16,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const formatList = document.getElementById('format-list');
     const newSearchBtn = document.getElementById('new-search-btn');
     
-    // Hamburger menu functionality
-    const menuToggle = document.getElementById('menu-toggle');
-    const sidebar = document.getElementById('sidebar');
-    const overlay = document.getElementById('overlay');
-    const closeSidebar = document.getElementById('close-sidebar');
+    // REMOVED: Hamburger menu functionality - this is now handled in menu.js
     
-    if (menuToggle) {
-        menuToggle.addEventListener('click', function() {
-            sidebar.classList.add('active');
-            overlay.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        });
-    }
-    
-    if (closeSidebar) {
-        closeSidebar.addEventListener('click', function() {
-            sidebar.classList.remove('active');
-            overlay.classList.remove('active');
-            document.body.style.overflow = '';
-        });
-    }
-    
-    if (overlay) {
-        overlay.addEventListener('click', function() {
-            sidebar.classList.remove('active');
-            overlay.classList.remove('active');
-            document.body.style.overflow = '';
-        });
-    }
-
     // URL validation for supported platforms
     function isValidUrl(url) {
         const platformRegex = /^(https?:\/\/)?(www\.)?(youtube\.com|youtu\.?be|facebook\.com|fb\.com|fb\.watch|instagram\.com|twitter\.com|x\.com)\/.+/;
@@ -110,7 +82,7 @@ document.addEventListener('DOMContentLoaded', function() {
             
             // Reset button
             generateBtn.disabled = false;
-            generateBtn.textContent = 'Generate Links';
+            generateBtn.textContent = 'Download';
             
             if (data.success) {
                 // Populate video information
@@ -120,7 +92,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 // Set platform badge
                 if (data.platform) {
                     platformBadge.className = 'platform-badge ' + data.platform;
-                    platformBadge.textContent = capitalizeFirstLetter(data.platform);
+                    // Fix for Twitter/X display
+                    const platformName = data.platform === 'twitter' ? 'Twitter/X' : capitalizeFirstLetter(data.platform);
+                    platformBadge.textContent = platformName;
                     platformBadge.style.display = 'block';
                 } else {
                     platformBadge.style.display = 'none';
@@ -223,6 +197,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 
                 // Show results
                 resultContainer.style.display = 'block';
+                
+                // Scroll to results
+                resultContainer.scrollIntoView({ behavior: 'smooth' });
             } else {
                 // Show error
                 errorContainer.style.display = 'block';
@@ -235,7 +212,7 @@ document.addEventListener('DOMContentLoaded', function() {
             
             // Reset button
             generateBtn.disabled = false;
-            generateBtn.textContent = 'Generate Links';
+            generateBtn.textContent = 'Download';
             
             // Show error
             errorContainer.style.display = 'block';
@@ -263,4 +240,34 @@ document.addEventListener('DOMContentLoaded', function() {
             this.src = '/static/no-thumbnail.jpg';
         });
     }
+    
+    // Add example click handlers for the platform examples
+    const platformExamples = document.querySelectorAll('.feature-item');
+    platformExamples.forEach(item => {
+        item.addEventListener('click', function() {
+            const platformType = this.querySelector('.feature-icon').className.split(' ')[1];
+            let exampleUrl = '';
+            
+            switch(platformType) {
+                case 'youtube-icon':
+                    exampleUrl = 'https://www.youtube.com/watch?v=dQw4w9WgXcQ';
+                    break;
+                case 'youtube-mp4':
+                    exampleUrl = 'https://www.youtube.com/watch?v=dQw4w9WgXcQ';
+                    break;
+                case 'youtube-shorts':
+                    exampleUrl = 'https://www.youtube.com/shorts/dQw4w9WgXcQ';
+                    break;
+                case 'youtube-mp3':
+                    exampleUrl = 'https://www.youtube.com/watch?v=dQw4w9WgXcQ';
+                    break;
+                // Can add more examples for other platforms here
+            }
+            
+            if (exampleUrl) {
+                videoUrlInput.value = exampleUrl;
+                videoUrlInput.focus();
+            }
+        });
+    });
 });
