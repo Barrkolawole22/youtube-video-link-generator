@@ -1,1 +1,1 @@
-web: uvicorn main:app --host 0.0.0.0 --port $PORT 
+web: /app/.venv/bin/python /app/.venv/bin/uvicorn main:app --host 0.0.0.0 --port 8000

@@ -1,0 +1,26 @@
+{
+  "dependencies": {
+    "@capacitor/android": "^7.2.0",
+    "@capacitor/cli": "^7.2.0",
+    "@capacitor/core": "^7.2.0"
+  },
+  "name": "youtube_downloader",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Barrkolawole22/youtube-video-link-generator.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Barrkolawole22/youtube-video-link-generator/issues"
+  },
+  "homepage": "https://github.com/Barrkolawole22/youtube-video-link-generator#readme"
+}

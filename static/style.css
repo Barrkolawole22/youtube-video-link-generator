@@ -1036,3 +1036,240 @@ button:disabled {
     --border-color: #333;
     --box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
 }
+/* Platform Shortcuts Section */
+.platform-shortcuts {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.platform-shortcut {
+    padding: 12px 20px;
+    border-radius: var(--border-radius);
+    font-weight: 600;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.platform-shortcut:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.platform-shortcut i {
+    font-size: 16px;
+}
+
+.youtube-shortcut {
+    background-color: #FF0000;
+}
+
+.youtube-shortcut:hover {
+    background-color: #cc0000;
+}
+
+.instagram-shortcut {
+    background: linear-gradient(45deg, #405DE6, #5851DB, #833AB4, #C13584, #E1306C, #FD1D1D);
+}
+
+.instagram-shortcut:hover {
+    opacity: 0.9;
+}
+
+.facebook-shortcut {
+    background-color: #1877F2;
+}
+
+.facebook-shortcut:hover {
+    background-color: #0d65d9;
+}
+
+.twitter-shortcut {
+    background-color: #1DA1F2;
+}
+
+.twitter-shortcut:hover {
+    background-color: #0c85d0;
+}
+
+.threads-shortcut {
+    background: linear-gradient(45deg, #000000, #333333);
+}
+
+.threads-shortcut:hover {
+    background: linear-gradient(45deg, #333333, #555555);
+}
+
+/* Learn More Link */
+.learn-more {
+    display: inline-block;
+    margin-top: 15px;
+    color: var(--primary-color);
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.learn-more:hover {
+    color: var(--primary-hover);
+    text-decoration: underline;
+}
+
+.learn-more i {
+    margin-left: 5px;
+    font-size: 12px;
+    transition: transform 0.3s ease;
+}
+
+.learn-more:hover i {
+    transform: translateX(3px);
+}
+
+/* Tip Link */
+.tip-link {
+    display: inline-block;
+    background-color: rgba(52, 152, 219, 0.1);
+    padding: 8px 15px;
+    border-radius: 20px;
+    color: var(--primary-color);
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    margin-top: 10px;
+    transition: all 0.3s ease;
+}
+
+.tip-link:hover {
+    background-color: rgba(52, 152, 219, 0.2);
+    transform: translateY(-2px);
+}
+
+.tip-link i {
+    margin-right: 5px;
+}
+
+/* Platform Buttons */
+.platform-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 20px 0;
+    justify-content: center;
+}
+
+.platform-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 18px;
+    border-radius: 30px;
+    font-weight: 600;
+    font-size: 14px;
+    color: #fff;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.platform-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.platform-btn i {
+    font-size: 16px;
+}
+
+.btn-youtube {
+    background-color: #FF0000;
+}
+
+.btn-youtube:hover {
+    background-color: #cc0000;
+}
+
+.btn-instagram {
+    background: linear-gradient(45deg, #405DE6, #5851DB, #833AB4, #C13584, #E1306C, #FD1D1D);
+}
+
+.btn-instagram:hover {
+    opacity: 0.9;
+}
+
+.btn-facebook {
+    background-color: #1877F2;
+}
+
+.btn-facebook:hover {
+    background-color: #0d65d9;
+}
+
+.btn-twitter {
+    background-color: #1DA1F2;
+}
+
+.btn-twitter:hover {
+    background-color: #0c85d0;
+}
+
+.btn-threads {
+    background: linear-gradient(45deg, #000000, #333333);
+}
+
+.btn-threads:hover {
+    background: linear-gradient(45deg, #333333, #555555);
+}
+
+/* Platform Icon - Threads */
+.threads-icon i {
+    color: #000000;
+}
+
+/* Support for Threads in feature and support section */
+.support-item:nth-child(5) {
+    border-left-color: #000000;
+}
+
+.support-item:nth-child(5) i {
+    color: #000000;
+}
+
+/* Platform badge for Threads */
+.threads {
+    background: linear-gradient(45deg, #000000, #333333);
+}
+
+/* Threads tip styling */
+.platform-tip h3 i.fa-brands.fa-threads {
+    color: #000000;
+}
+
+/* Responsive adjustments for new elements */
+@media (max-width: 768px) {
+    .platform-shortcuts {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .platform-btn {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 576px) {
+    .platform-buttons {
+        flex-direction: column;
+    }
+}

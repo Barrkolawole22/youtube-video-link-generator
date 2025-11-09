@@ -1,0 +1,2 @@
+.youtube.com	TRUE	/	FALSE	1794232741	CONSENT	YES+cb
+.youtube.com	TRUE	/	TRUE	1794232741	VISITOR_INFO1_LIVE	random_string_here

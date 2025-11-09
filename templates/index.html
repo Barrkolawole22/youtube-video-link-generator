@@ -3,15 +3,1160 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SaveMedia - Social Media Video Downloader</title>
-    <meta name="description" content="Download videos from YouTube, Facebook, Instagram, and Twitter (X) easily with our free online tool.">
-    <link rel="stylesheet" href="/static/style.css">
+    <title>igfbsaver - Free Social Media Video Downloader | Facebook, Instagram, Twitter</title>
+    <meta name="description" content="Download videos from Facebook, Instagram, Twitter (X), and Threads easily with our free online tool. Save videos in high quality for free.">
+    <meta name="keywords" content="video downloader, social media downloader, facebook video downloader, instagram video downloader, twitter video downloader, threads downloader, reels downloader, download social media videos">
+    
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://igfbsaver.com/">
+    <meta property="og:title" content="igfbsaver - Free Social Media Video Downloader">
+    <meta property="og:description" content="Download videos from Facebook, Instagram, Twitter (X), and Threads easily with our free online tool.">
+    <meta property="og:image" content="/static/og-image.jpg">
+    
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://igfbsaver.com/">
+    <meta property="twitter:title" content="igfbsaver - Free Social Media Video Downloader">
+    <meta property="twitter:description" content="Download videos from Facebook, Instagram, Twitter (X), and Threads easily with our free online tool.">
+    <meta property="twitter:image" content="/static/og-image.jpg">
+    
+    <link rel="canonical" href="https://igfbsaver.com/">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "igfbsaver Social Media Downloader",
+      "url": "https://igfbsaver.com",
+      "description": "Free tool to download videos from Facebook, Instagram, Twitter (X), and Threads.",
+      "applicationCategory": "UtilityApplication",
+      "operatingSystem": "All",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    }
+    </script>
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="theme-color" content="#007AFF" />
+    <link rel="icon" href="/static/icons/icon-192.png" sizes="192x192" type="image/png">
+
+    <script>
+      if ("serviceWorker" in navigator) {
+        navigator.serviceWorker.register("/service-worker.js")
+          .then(() => console.log("Service Worker registered"))
+          .catch(err => console.error("SW registration failed:", err));
+      }
+    </script>
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-DZ4LC3MP4X"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-DZ4LC3MP4X');
+    </script>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-gradient: linear-gradient(135deg, #007AFF 0%, #0051D5 50%, #003D9E 100%);
+            --dark-bg: #000000;
+            --card-bg: rgba(255, 255, 255, 0.05);
+            --text-primary: #ffffff;
+            --text-secondary: rgba(255, 255, 255, 0.7);
+            --border-color: rgba(255, 255, 255, 0.1);
+            --accent-blue: #007AFF;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: var(--dark-bg);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--primary-gradient);
+            opacity: 0.1;
+            z-index: -1;
+        }
+
+        header {
+            background: rgba(10, 10, 15, 0.9);
+            backdrop-filter: blur(20px);
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid var(--border-color);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-img {
+            height: 40px;
+            width: auto;
+        }
+
+        .hamburger-menu {
+            display: none;
+        }
+
+        .menu-toggle {
+            background: var(--primary-gradient);
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            alignment-baseline: central;
+        }
+
+        .menu-toggle:hover {
+            transform: scale(1.05);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        nav a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        nav a:hover, nav .active a {
+            background: var(--primary-gradient);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .hero-section {
+            text-align: center;
+            padding: 4rem 2rem;
+            background: var(--card-bg);
+            border-radius: 24px;
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--border-color);
+            margin-bottom: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: var(--primary-gradient);
+            opacity: 0.05;
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .hero-section h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+            position: relative;
+        }
+
+        .subtitle {
+            font-size: 1.3rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .search-box {
+            max-width: 700px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .input-group {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 0.5rem;
+            border-radius: 16px;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .input-group:focus-within {
+            border-color: rgba(0, 122, 255, 0.5);
+            box-shadow: 0 8px 32px rgba(0, 122, 255, 0.2);
+        }
+
+        #video-url {
+            flex: 1;
+            padding: 1rem 1.5rem;
+            background: transparent;
+            border: none;
+            color: white;
+            font-size: 1rem;
+            outline: none;
+        }
+
+        #video-url::placeholder {
+            color: var(--text-secondary);
+        }
+
+        .download-main-btn {
+            background: var(--primary-gradient);
+            border: none;
+            padding: 1rem 2.5rem;
+            border-radius: 12px;
+            color: white;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            white-space: nowrap;
+        }
+
+        .download-main-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 32px rgba(0, 122, 255, 0.4);
+        }
+
+        .platform-examples {
+            background: rgba(255, 255, 255, 0.03);
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin-bottom: 1rem;
+            border: 1px solid var(--border-color);
+        }
+
+        .platform-examples p {
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .platform-examples ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .platform-examples li {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .platform-examples i {
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .terms, .safe-badge, .norton-badge {
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            margin-top: 1rem;
+        }
+
+        .terms a {
+            color: var(--accent-blue);
+            text-decoration: none;
+        }
+
+        .safe-badge {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .safe-badge i {
+            color: #4ade80;
+        }
+
+        .verified {
+            background: rgba(74, 222, 128, 0.1);
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            color: #4ade80;
+            font-weight: 600;
+        }
+
+        .norton-badge {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .norton-badge img {
+            height: 20px;
+        }
+
+        .platform-shortcuts {
+            margin-bottom: 3rem;
+        }
+
+        .platform-shortcuts h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .shortcut-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .platform-shortcut {
+            background: var(--card-bg);
+            backdrop-filter: blur(20px);
+            padding: 2rem;
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+            text-align: center;
+            text-decoration: none;
+            color: var(--text-primary);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .platform-shortcut:hover {
+            transform: translateY(-8px);
+            border-color: rgba(0, 122, 255, 0.5);
+            box-shadow: 0 16px 48px rgba(0, 122, 255, 0.2);
+        }
+
+        .platform-shortcut i {
+            font-size: 3rem;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .platform-shortcut span {
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .features-section, .platform-support {
+            margin-bottom: 3rem;
+        }
+
+        .features-section h2, .platform-support h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-item {
+            background: var(--card-bg);
+            backdrop-filter: blur(20px);
+            padding: 2rem;
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .feature-item:hover {
+            transform: translateY(-8px);
+            border-color: rgba(0, 122, 255, 0.5);
+            box-shadow: 0 16px 48px rgba(0, 122, 255, 0.2);
+        }
+
+        .feature-icon {
+            margin-bottom: 1rem;
+        }
+
+        .feature-icon i {
+            font-size: 3rem;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .feature-icon span {
+            display: block;
+            margin-top: 0.5rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .support-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .support-item {
+            background: var(--card-bg);
+            backdrop-filter: blur(20px);
+            padding: 2rem;
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+
+        .support-item:hover {
+            transform: translateY(-8px);
+            border-color: rgba(0, 122, 255, 0.5);
+            box-shadow: 0 16px 48px rgba(0, 122, 255, 0.2);
+        }
+
+        .support-item i {
+            font-size: 2.5rem;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+        }
+
+        .support-item h4 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+
+        .support-item ul {
+            list-style: none;
+            margin-bottom: 1.5rem;
+        }
+
+        .support-item li {
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .support-item li i {
+            font-size: 1rem;
+            color: #4ade80;
+        }
+
+        .learn-more {
+            color: var(--accent-blue);
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .learn-more:hover {
+            gap: 1rem;
+        }
+
+        .highlight-box {
+            background: var(--card-bg);
+            backdrop-filter: blur(20px);
+            padding: 3rem;
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+            text-align: center;
+            margin: 3rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .highlight-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--primary-gradient);
+        }
+
+        .highlight-header {
+            display: inline-block;
+            background: var(--primary-gradient);
+            padding: 0.5rem 1.5rem;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            margin-bottom: 1rem;
+            letter-spacing: 1px;
+        }
+
+        .highlight-box h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .highlight-box p {
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+
+        .install-button {
+            background: var(--primary-gradient);
+            padding: 1rem 2.5rem;
+            border-radius: 12px;
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .install-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 32px rgba(0, 122, 255, 0.4);
+        }
+
+        .loading-container, .error-container, .result-container {
+            background: var(--card-bg);
+            backdrop-filter: blur(20px);
+            padding: 3rem;
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .loading-spinner {
+            width: 80px;
+            height: 80px;
+            position: relative;
+            margin: 0 auto 2rem;
+        }
+
+        .loading-spinner::before,
+        .loading-spinner::after {
+            content: '';
+            position: absolute;
+            border-radius: 50%;
+        }
+
+        .loading-spinner::before {
+            width: 80px;
+            height: 80px;
+            border: 4px solid transparent;
+            border-top-color: #007AFF;
+            border-right-color: #0051D5;
+            border-bottom-color: #003D9E;
+            border-left-color: #007AFF;
+            animation: spin 1.5s linear infinite;
+        }
+
+        .loading-spinner::after {
+            width: 60px;
+            height: 60px;
+            top: 10px;
+            left: 10px;
+            border: 4px solid transparent;
+            border-top-color: #003D9E;
+            border-right-color: #0051D5;
+            border-bottom-color: #007AFF;
+            border-left-color: #003D9E;
+            animation: spin 2s linear infinite reverse;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .loading-container p {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .video-info {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 2.5rem;
+            margin-bottom: 2.5rem;
+            align-items: start;
+            background: rgba(255, 255, 255, 0.03);
+            padding: 2rem;
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+        }
+
+        .video-thumbnail {
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .video-thumbnail img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .platform-badge {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: var(--primary-gradient);
+            padding: 0.6rem 1.2rem;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 16px rgba(0, 122, 255, 0.4);
+        }
+
+        .video-details {
+            text-align: left;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .video-details h2 {
+            margin-bottom: 0.5rem;
+            font-size: 1.8rem;
+            line-height: 1.4;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .video-details p {
+            color: var(--text-secondary);
+            margin-bottom: 0;
+            font-size: 0.95rem;
+        }
+
+        .video-details span {
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+
+        .download-options {
+            background: rgba(255, 255, 255, 0.03);
+            padding: 2rem;
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+        }
+
+        .download-options h3 {
+            margin-bottom: 1.5rem;
+            font-size: 1.4rem;
+            text-align: center;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .format-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .secondary-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--border-color);
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 2rem;
+        }
+
+        .secondary-btn:hover {
+            background: var(--primary-gradient);
+            border-color: transparent;
+            transform: translateY(-2px);
+        }
+
+        .how-to-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            background: var(--card-bg);
+            backdrop-filter: blur(20px);
+            padding: 3rem;
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+            margin: 3rem 0;
+        }
+
+        .how-to-content h2 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .how-to-content ol {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+
+        .how-to-content li {
+            padding: 1rem;
+            margin-bottom: 1rem;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+
+        .how-to-content li:hover {
+            background: rgba(255, 255, 255, 0.05);
+            transform: translateX(8px);
+        }
+
+        .step-number {
+            background: var(--primary-gradient);
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .note {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .platform-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .platform-btn {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 0.8rem 1.5rem;
+            border-radius: 10px;
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .platform-btn:hover {
+            background: var(--primary-gradient);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0, 122, 255, 0.3);
+        }
+
+        .how-to-image {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .how-to-image img {
+            width: 100%;
+            height: auto;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+        }
+
+        .method-section {
+            margin: 3rem 0;
+        }
+
+        .method-header {
+            display: inline-block;
+            background: var(--primary-gradient);
+            padding: 0.5rem 1.5rem;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            margin-bottom: 1rem;
+            letter-spacing: 1px;
+        }
+
+        .method-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .tips-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .platform-tip {
+            background: var(--card-bg);
+            backdrop-filter: blur(20px);
+            padding: 2rem;
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+
+        .platform-tip:hover {
+            transform: translateY(-8px);
+            border-color: rgba(0, 122, 255, 0.5);
+            box-shadow: 0 16px 48px rgba(0, 122, 255, 0.2);
+        }
+
+        .platform-tip h3 {
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .platform-tip h3 i {
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .platform-tip p {
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 1rem;
+        }
+
+        .tip-link {
+            color: var(--accent-blue);
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .tip-link:hover {
+            gap: 1rem;
+        }
+
+        .faq-section {
+            margin: 3rem 0;
+        }
+
+        .faq-section h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .faq-container {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .faq-item {
+            background: var(--card-bg);
+            backdrop-filter: blur(20px);
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .faq-item:hover {
+            border-color: rgba(0, 122, 255, 0.5);
+        }
+
+        .faq-question {
+            padding: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .faq-question h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .faq-question i {
+            transition: transform 0.3s ease;
+            color: var(--text-secondary);
+        }
+
+        .faq-item.active .faq-question i {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 500px;
+        }
+
+        .faq-answer p {
+            padding: 0 1.5rem 1.5rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        .footer {
+            background: rgba(10, 10, 15, 0.9);
+            backdrop-filter: blur(20px);
+            padding: 3rem 2rem 1rem;
+            border-top: 1px solid var(--border-color);
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .footer-section p, .footer-section a {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.7;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section a {
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: white;
+            padding-left: 0.5rem;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+        }
+
+        .footer-bottom p {
+            margin-bottom: 0.5rem;
+        }
+
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(4px);
+            z-index: 999;
+        }
+
+        @media (max-width: 768px) {
+            .hero-section h1 {
+                font-size: 2.5rem;
+            }
+
+            .subtitle {
+                font-size: 1.1rem;
+            }
+
+            .input-group {
+                flex-direction: column;
+            }
+
+            .hamburger-menu {
+                display: block;
+            }
+
+            nav {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 80%;
+                max-width: 300px;
+                height: 100vh;
+                background: rgba(10, 10, 15, 0.98);
+                backdrop-filter: blur(20px);
+                padding: 2rem;
+                transition: right 0.3s ease;
+                z-index: 1000;
+                overflow-y: auto;
+            }
+
+            nav.active {
+                right: 0;
+            }
+
+            nav ul {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            nav a {
+                padding: 1rem;
+            }
+
+            .how-to-section {
+                grid-template-columns: 1fr;
+            }
+
+            .video-info {
+                grid-template-columns: 1fr;
+                padding: 1.5rem;
+                gap: 1.5rem;
+            }
+
+            .shortcut-container, .tips-container, .support-grid, .features {
+                grid-template-columns: 1fr;
+            }
+
+            .platform-buttons {
+                flex-direction: column;
+            }
+        }
+    </style>
 </head>
 <body>
     <header>
         <div class="logo">
-            <img src="/static/logo.png" alt="SaveMedia Logo" class="logo-img">
+            <img src="/static/logo.png/" alt="igfbsaver Logo" class="logo-img">
         </div>
         <div class="hamburger-menu">
             <button id="menu-toggle" class="menu-toggle">☰</button>
@@ -19,12 +1164,13 @@
         <nav id="nav-menu" class="nav-menu">
             <ul>
                 <li class="active"><a href="/index.html"><i class="fas fa-home"></i> Home</a></li>
-                <li><a href="download-app.html"><i class="fas fa-download"></i> Download App</a></li>
-                <li><a href="more-apps.html"><i class="fas fa-box"></i> More Apps</a></li>
+                <li><a href="twitter-video-downloader.html"><i class="fab fa-twitter"></i> Twitter</a></li>
+                <li><a href="instagram-video-downloader.html"><i class="fab fa-instagram"></i> Instagram</a></li>
+                <li><a href="facebook-video-downloader.html"><i class="fab fa-facebook"></i> Facebook</a></li>
                 <li><a href="promotions.html"><i class="fas fa-tag"></i> Promotions</a></li>
-                <li><a href="https://barrkolawole.vercel.app/"><i class="fas fa-info-circle"></i> About Us</a></li>
-                <li><a href="terms-of-service.html"><i class="fas fa-file-contract"></i> Terms of Service</a></li>
-                <li><a href="privacy.html"><i class="fas fa-shield-alt"></i> Privacy Policy</a></li>
+                <li><a href="https://barrkolawole.vercel.app/"><i class="fas fa-info-circle"></i> About</a></li>
+                <li><a href="terms-of-service.html"><i class="fas fa-file-contract"></i> Terms</a></li>
+                <li><a href="privacy.html"><i class="fas fa-shield-alt"></i> Privacy</a></li>
             </ul>
         </nav>
     </header>
@@ -32,22 +1178,22 @@
     <div class="container">
         <section class="hero-section">
             <h1>Social Media Video Downloader</h1>
-            <h2 class="subtitle">Download videos from YouTube, Facebook, Instagram, and Twitter (X)</h2>
+            <h2 class="subtitle">Download videos from Facebook, Instagram, Twitter (X), and Threads</h2>
             
             <div class="search-box">
                 <form id="url-form" class="url-form">
                     <div class="input-group">
                         <input type="text" id="video-url" placeholder="Paste your video link here" required>
-                        <button type="submit" id="generate-btn" class="download-main-btn"><i class="fas fa-download"></i> Download</button>
+                        <a href="#loading"><button type="submit" id="generate-btn" class="download-main-btn"><i class="fas fa-download"></i> Download</button></a>
                     </div>
                 </form>
                 <div class="platform-examples">
                     <p>Supported URLs:</p>
                     <ul>
-                        <li><i class="fab fa-youtube"></i> YouTube: youtube.com/watch?v=...</li>
                         <li><i class="fab fa-instagram"></i> Instagram: instagram.com/p/...</li>
                         <li><i class="fab fa-facebook"></i> Facebook: facebook.com/watch?v=...</li>
                         <li><i class="fab fa-twitter"></i> Twitter/X: twitter.com/user/status/...</li>
+                        <li><i class="fas fa-comment-alt"></i> Threads: threads.net/@user/...</li>
                     </ul>
                 </div>
                 <div class="terms">
@@ -62,15 +1208,31 @@
             </div>
         </section>
 
+        <section class="platform-shortcuts">
+            <h2>Choose Your Platform</h2>
+            <div class="shortcut-container">
+                <a href="facebook-video-downloader.html" class="platform-shortcut facebook">
+                    <i class="fab fa-facebook"></i>
+                    <span>Facebook Video Downloader</span>
+                </a>
+                <a href="instagram-video-downloader.html" class="platform-shortcut instagram">
+                    <i class="fab fa-instagram"></i>
+                    <span>Instagram Video Downloader</span>
+                </a>
+                <a href="twitter-video-downloader.html" class="platform-shortcut twitter">
+                    <i class="fab fa-twitter"></i>
+                    <span>Twitter Video Downloader</span>
+                </a>
+                <a href="threads-video-downloader.html" class="platform-shortcut threads">
+                    <i class="fas fa-comment-alt"></i>
+                    <span>Threads Video Downloader</span>
+                </a>
+            </div>
+        </section>
+
         <section class="features-section">
             <h2>Supported Platforms</h2>
             <div class="features">
-                <div class="feature-item">
-                    <div class="feature-icon youtube-icon">
-                        <i class="fab fa-youtube"></i>
-                        <span>YouTube</span>
-                    </div>
-                </div>
                 <div class="feature-item">
                     <div class="feature-icon facebook-icon">
                         <i class="fab fa-facebook"></i>
@@ -89,22 +1251,18 @@
                         <span>Twitter/X</span>
                     </div>
                 </div>
+                <div class="feature-item">
+                    <div class="feature-icon threads-icon">
+                        <i class="fas fa-comment-alt"></i>
+                        <span>Threads</span>
+                    </div>
+                </div>
             </div>
         </section>
 
         <section class="platform-support">
             <h2>Supported Content Types</h2>
             <div class="support-grid">
-                <div class="support-item">
-                    <i class="fab fa-youtube"></i>
-                    <h4>YouTube</h4>
-                    <ul>
-                        <li><i class="fas fa-check"></i> Regular videos</li>
-                        <li><i class="fas fa-check"></i> YouTube Shorts</li>
-                        <li><i class="fas fa-check"></i> Music videos</li>
-                        <li><i class="fas fa-check"></i> MP3 audio extraction</li>
-                    </ul>
-                </div>
                 <div class="support-item">
                     <i class="fab fa-facebook"></i>
                     <h4>Facebook</h4>
@@ -114,6 +1272,7 @@
                         <li><i class="fas fa-check"></i> Public page videos</li>
                         <li><i class="fas fa-check"></i> FB Reels</li>
                     </ul>
+                    <a href="facebook-video-downloader.html" class="learn-more">Learn more</a>
                 </div>
                 <div class="support-item">
                     <i class="fab fa-instagram"></i>
@@ -124,6 +1283,7 @@
                         <li><i class="fas fa-check"></i> IGTV videos</li>
                         <li><i class="fas fa-check"></i> Stories (if public)</li>
                     </ul>
+                    <a href="instagram-video-downloader.html" class="learn-more">Learn more</a>
                 </div>
                 <div class="support-item">
                     <i class="fab fa-twitter"></i>
@@ -134,6 +1294,18 @@
                         <li><i class="fas fa-check"></i> Media in threads</li>
                         <li><i class="fas fa-check"></i> Spaces (recorded)</li>
                     </ul>
+                    <a href="twitter-video-downloader.html" class="learn-more">Learn more</a>
+                </div>
+                <div class="support-item">
+                    <i class="fas fa-comment-alt"></i>
+                    <h4>Threads</h4>
+                    <ul>
+                        <li><i class="fas fa-check"></i> Video posts</li>
+                        <li><i class="fas fa-check"></i> Thread videos</li>
+                        <li><i class="fas fa-check"></i> Public content</li>
+                        <li><i class="fas fa-check"></i> HD quality</li>
+                    </ul>
+                    <a href="threads-video-downloader.html" class="learn-more">Learn more</a>
                 </div>
             </div>
         </section>
@@ -142,7 +1314,7 @@
             <div class="highlight-header">MOBILE APP</div>
             <h2>Download videos and music on-the-go with our mobile app</h2>
             <p>Get the full experience with our ad-free mobile application</p>
-            <a href="https://savemediafrom.net/app-download" class="install-button"><i class="fas fa-download"></i> INSTALL NOW</a>
+            <a href="download-app.html" class="install-button"><i class="fas fa-download"></i> INSTALL NOW</a>
         </div>
 
         <div id="loading" class="loading-container" style="display: none;">
@@ -168,7 +1340,7 @@
             </div>
 
             <div class="download-options">
-                <h3>Download Options (You may need to try mutiple options)</h3>
+                <h3>Download Options (You may need to try multiple options)</h3>
                 <div id="format-list" class="format-list"></div>
             </div>
             
@@ -187,10 +1359,15 @@
                     <li><span class="step-number">4</span> Select your preferred format and quality</li>
                 </ol>
                 <p class="note">This method works on all major browsers including Chrome, Firefox, Safari, and Edge.</p>
-                <a href="https://savemediafrom.net/app-download" class="install-button"><i class="fas fa-download"></i> INSTALL NOW</a>
+                <div class="platform-buttons">
+                    <a href="/facebook-video-downloader.html" class="platform-btn facebook"><i class="fab fa-facebook"></i> Facebook</a>
+                    <a href="/instagram-video-downloader.html" class="platform-btn instagram"><i class="fab fa-instagram"></i> Instagram</a>
+                    <a href="/twitter-video-downloader.html" class="platform-btn twitter"><i class="fab fa-twitter"></i> Twitter</a>
+                    <a href="/threads-video-downloader.html" class="platform-btn threads"><i class="fas fa-comment-alt"></i> Threads</a>
+                </div>
             </div>
             <div class="how-to-image">
-                <img src="/static/tutorial-image.jpg" alt="Tutorial Image">
+                <img src="/static/tutorial-image.jpg" alt="Tutorial on how to download social media videos">
             </div>
         </section>
 
@@ -199,30 +1376,31 @@
             <h2>Tips for Each Platform</h2>
             <div class="tips-container">
                 <div class="platform-tip">
-                    <h3><i class="fab fa-youtube"></i> YouTube</h3>
-                    <p>For YouTube Shorts, use the regular YouTube URL. You can also add "save" to the beginning of YouTube URLs:</p>
-                    <div class="example-url">
-                        <div class="url-box">https://youtube.com/watch?v=dQw4w9WgXcQ</div>
-                        <div class="url-box modified">https://saveyoutube.com/watch?v=dQw4w9WgXcQ</div>
-                    </div>
-                </div>
-                
-                <div class="platform-tip">
                     <h3><i class="fab fa-instagram"></i> Instagram</h3>
                     <p>For Instagram, make sure you're copying the direct post URL, not a story URL. For Reels, get the URL from the share button.</p>
+                    <a href="instagram-video-downloader.html" class="tip-link">More Instagram tips</a>
                 </div>
                 
                 <div class="platform-tip">
                     <h3><i class="fab fa-facebook"></i> Facebook</h3>
                     <p>For Facebook videos, copy the URL from the address bar while viewing the video. For Reels, get the link via the share button.</p>
+                    <a href="facebook-video-downloader.html" class="tip-link">More Facebook tips</a>
                 </div>
                 
                 <div class="platform-tip">
                     <h3><i class="fab fa-twitter"></i> Twitter/X</h3>
                     <p>For Twitter, copy the link to the individual tweet that contains the video. Works with both twitter.com and x.com domains.</p>
+                    <a href="twitter-video-downloader.html" class="tip-link">More Twitter tips</a>
+                </div>
+                
+                <div class="platform-tip">
+                    <h3><i class="fas fa-comment-alt"></i> Threads</h3>
+                    <p>For Threads, tap the share button on the post and select "Copy link" to get the URL for downloading.</p>
+                    <a href="threads-video-downloader.html" class="tip-link">More Threads tips</a>
                 </div>
             </div>
         </section>
+
         <section class="faq-section">
             <h2>Frequently Asked Questions</h2>
             <div class="faq-container">
@@ -232,7 +1410,7 @@
                         <i class="fas fa-chevron-down"></i>
                     </div>
                     <div class="faq-answer">
-                        <p>Yes, SaveMedia.net is completely free to use for basic downloads. We offer premium options with our mobile app for advanced features.</p>
+                        <p>Yes, igfbsaver is completely free to use for basic downloads. We offer premium options with our mobile app for advanced features.</p>
                     </div>
                 </div>
                 <div class="faq-item">
@@ -268,8 +1446,17 @@
         <div class="footer">
             <div class="footer-content">
                 <div class="footer-section">
-                    <h3>About SaveMedia</h3>
-                    <p>SaveMedia.net helps you download videos from popular social media platforms for personal use.</p>
+                    <h3>About igfbsaver</h3>
+                    <p>igfbsaver helps you download videos from popular social media platforms for personal use.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Platform Downloaders</h3>
+                    <ul>
+                        <li><a href="/facebook-video-downloader.html">Facebook Video Downloader</a></li>
+                        <li><a href="/instagram-video-downloader.html">Instagram Video Downloader</a></li>
+                        <li><a href="/twitter-video-downloader.html">Twitter Video Downloader</a></li>
+                        <li><a href="/threads-video-downloader.html">Threads Video Downloader</a></li>
+                    </ul>
                 </div>
                 <div class="footer-section">
                     <h3>Quick Links</h3>
@@ -292,15 +1479,46 @@
             </div>
             <div class="footer-bottom">
                 <p>This tool generates direct download links using the platform's servers. No videos are stored on our server.</p>
-                <p>© 2025 SaveMedia.net | All Rights Reserved</p>
+                <p>© 2025 igfbsaver | All Rights Reserved</p>
             </div>
         </div>
     </div>
     
-    <!-- Mobile Navigation Overlay -->
     <div id="overlay" class="overlay"></div>
     
     <script src="/static/script.js"></script>
-    <script src="/static/menu.js"></script>  
+    <script src="/static/menu.js"></script>
+    <script>
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const faqItem = question.parentElement;
+                const wasActive = faqItem.classList.contains('active');
+                
+                document.querySelectorAll('.faq-item').forEach(item => {
+                    item.classList.remove('active');
+                });
+                
+                if (!wasActive) {
+                    faqItem.classList.add('active');
+                }
+            });
+        });
+
+        const menuToggle = document.getElementById('menu-toggle');
+        const navMenu = document.getElementById('nav-menu');
+        const overlay = document.getElementById('overlay');
+
+        if (menuToggle) {
+            menuToggle.addEventListener('click', () => {
+                navMenu.classList.toggle('active');
+                overlay.style.display = navMenu.classList.contains('active') ? 'block' : 'none';
+            });
+
+            overlay.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+                overlay.style.display = 'none';
+            });
+        }
+    </script>
 </body>
 </html>

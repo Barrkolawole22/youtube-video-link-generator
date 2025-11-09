@@ -1,0 +1,6 @@
+{
+  "appId": "io.your.domain",
+  "appName": "YourAppName",
+  "webDir": "dist",
+  "bundledWebRuntime": false
+}
