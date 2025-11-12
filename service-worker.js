@@ -15,9 +15,11 @@ const URLS_TO_CACHE = [
   '/static/og-image.jpg',
   '/static/tutorial-image.jpg',
   '/static/icons/icon-192.png',
-  '/static/icons/icon-512.png'
-  // NOTE: Your /static/script.js and menu.js are not in your index.html
-  // If you have them on other pages, add them here.
+  '/static/icons/icon-512.png',
+  
+  // --- ADD THESE TWO LINES ---
+  '/static/script.js',
+  '/static/menu.js'
 ];
 
 // Install event: This is when the browser "installs" the PWA
