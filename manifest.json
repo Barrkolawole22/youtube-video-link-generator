@@ -1,7 +1,6 @@
 {
   "name": "igfbsaver Social Media Downloader",
   "short_name": "igfbsaver",
-  "description": "Free tool to download videos from Facebook, Instagram, Twitter (X), and Threads.",
   "start_url": "/index.html",
   "display": "standalone",
   "background_color": "#000000",
@@ -10,14 +9,12 @@
     {
       "src": "/static/icons/icon-192.png",
       "sizes": "192x192",
-      "type": "image/png",
-      "purpose": "any maskable"
+      "type": "image/png"
     },
     {
       "src": "/static/icons/icon-512.png",
       "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "any maskable"
+      "type": "image/png"
     }
   ]
 }
